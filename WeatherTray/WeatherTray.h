@@ -5,7 +5,8 @@
 #include <QContextMenuEvent>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QMessageBox>
+#include <QMessageBox> 
+#include <QMenu>
 
 
 
@@ -31,4 +32,6 @@ protected:
 
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
+
+    void getWeatherInfo(QString cityCode);
 };

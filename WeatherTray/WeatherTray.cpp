@@ -25,6 +25,22 @@ WeatherTray::~WeatherTray()
 {
 }
 
+void WeatherTray::onReplied(QNetworkReply* reply)
+{
+    int status_code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+    if (reply->error() != QNetworkReply::NoError || status_code != 200)
+    {
+        QMessageBox::warning(this, "天气", "请求数据失败", QMessageBox::Ok);
+    }
+    else
+    {
+        QByteArray byteArray = reply->readAll();
+    }
+
+    reply->deleteLater();
+}
+
 void WeatherTray::contextMenuEvent(QContextMenuEvent* event)          //弹出右键菜单
 {
     mExitMenu->exec(QCursor::pos());

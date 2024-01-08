@@ -6,6 +6,7 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QMessageBox>
+#include <QMenu>
 
 
 

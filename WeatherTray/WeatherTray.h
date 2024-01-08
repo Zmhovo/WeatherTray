@@ -3,6 +3,9 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_QMainWindow.h"
 #include <QContextMenuEvent>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QMessageBox>
 
 
 
@@ -14,6 +17,8 @@ public:
     WeatherTray(QWidget *parent = nullptr);
 
     ~WeatherTray();
+
+    void onReplied(QNetworkReply* reply);
 private:
     Ui::QMainWindow ui;
 

@@ -42,6 +42,17 @@ private:
     Today mToday;
     Day mDay[6];
 
+    //控件对象数组
+    QList<QLabel*> mWeekList;          //周几
+    QList<QLabel*> mDateList;          //日期
+
+    QList<QLabel*> mTypeList;          //天气
+    QList<QLabel*> mTypeIconList;          //图标
+
+    QList<QLabel*> mAqiList;          //污染指数
+
+    QList<QLabel*> mFxList;          //风向
+    QList<QLabel*> mFlList;          //风力
 protected:
     void contextMenuEvent(QContextMenuEvent* event);
 
@@ -51,4 +62,6 @@ protected:
     void getWeatherInfo(QString cityCode);          //获取天气信息
 
     void parseJson(QByteArray &byteArray);          //解析天气数据
+
+    void updateUI();          //更新UI
 };

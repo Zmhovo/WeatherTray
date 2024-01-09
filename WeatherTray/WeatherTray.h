@@ -11,14 +11,21 @@
 #include <QNetworkRequest>
 #include <QMessageBox> 
 #include <QMenu>
+#include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QNetworkInterface>
+#include <QPainter>
+#include <QPoint>
 
 #include "ui_QMainWindow.h"
 #include "WeatherData.h"
 
-
+#define INCREMENT 3          //温度每升高/降低1°，y轴坐标的增量
+#define POINT_RADIUS 3          //曲线描点的大小
+#define TEXT_OFFSET_X 15
+#define TEXT_OFFSET_Y 8
 
 
 class WeatherTray : public QMainWindow
@@ -61,6 +68,7 @@ private:
     QList<QLabel*> mFlList;          //风力
 
     QMap<QString, QString> mTypeMap;
+
 protected:
     void contextMenuEvent(QContextMenuEvent* event);
 
@@ -74,5 +82,8 @@ protected:
 
     void updateUI();          //更新UI
 
+    bool eventFilter(QObject* watched, QEvent* event);          //重写
 
+    void paintHighCurve();          //绘制高温曲线
+    void paintLowCurve();          //绘制低温曲线
 };

@@ -1,4 +1,5 @@
 #include "WeatherTray.h"
+#include "WeatherTool.h"
 
 WeatherTray::WeatherTray(QWidget* parent)
     : QMainWindow(parent)
@@ -72,7 +73,8 @@ WeatherTray::WeatherTray(QWidget* parent)
 
     connect(mNetAccessManager, &QNetworkAccessManager::finished, this, &WeatherTray::onReplied);
 
-    getWeatherInfo("101010100");
+    //getWeatherInfo("101010100");
+    getWeatherInfo("东莞");
 }
 
 WeatherTray::~WeatherTray()
@@ -113,8 +115,18 @@ void WeatherTray::mouseMoveEvent(QMouseEvent* event)
     this->move(event->globalPos() - mOffset);
 }
 
-void WeatherTray::getWeatherInfo(QString cityCode)
+//void WeatherTray::getWeatherInfo(QString cityCode)
+void WeatherTray::getWeatherInfo(QString cityName)
 {
+    ////
+    QString cityCode = WeatherTool::getCityCode(cityName);
+    ////
+    if (cityCode.isEmpty())
+    {
+        QMessageBox::warning(this, "天气", "请检查输入是否正确！", QMessageBox::Ok);
+        return;
+    }
+
     QUrl url("http://t.weather.itboy.net/api/weather/city/" + cityCode);
     mNetAccessManager->get(QNetworkRequest(url));
 }
@@ -270,4 +282,10 @@ void WeatherTray::updateUI()
         mFxList[i]->setText(mDay[i].fx);
         mFlList[i]->setText(mDay[i].fl);
     }
+}
+
+void WeatherTray::on_btnSearch_clicked()
+{
+    QString cityName = ui.leCity->text();
+    getWeatherInfo(cityName);
 }

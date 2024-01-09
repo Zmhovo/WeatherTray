@@ -20,6 +20,7 @@
 
 
 
+
 class WeatherTray : public QMainWindow
 {
     Q_OBJECT
@@ -29,7 +30,8 @@ public:
 
     ~WeatherTray();
 
-
+private slots:
+    void on_btnSearch_clicked();
 private:
     void onReplied(QNetworkReply* reply);
 
@@ -65,9 +67,12 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
 
-    void getWeatherInfo(QString cityCode);          //获取天气信息
+//    void getWeatherInfo(QString cityCode);          //获取天气信息
+    void getWeatherInfo(QString cityName);          //获取天气信息
 
     void parseJson(QByteArray &byteArray);          //解析天气数据
 
     void updateUI();          //更新UI
+
+
 };

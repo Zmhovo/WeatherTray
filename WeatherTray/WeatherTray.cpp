@@ -11,7 +11,7 @@ WeatherTray::WeatherTray(QWidget* parent)
     mExitMenu = new QMenu(this);
     mExitAct = new QAction();
 
-    mExitAct->setText("退出Exit");
+    mExitAct->setText("退出");
     mExitAct->setIcon(QIcon(":/res/close.png"));
 
     mExitMenu->addAction(mExitAct);
@@ -21,16 +21,52 @@ WeatherTray::WeatherTray(QWidget* parent)
         });
 
     //将控件添加到控件对象数组
-//    mWeekList << ui.lblWeek0 << ui.lblWeek1 << ui.lblWeek2 << ui.lblWeek3 << ui.lblWeek4 << ui.lblWeek5;
-//    mDateList << ui.lblDate0 << ui.lblDate1 << ui.lblDate2 << ui.lblDate3 << ui.lblDate4 << ui.lblDate5;
-//
-//    mTypeList << ui.lblType0 << ui.lblType1 << ui.lblType2 << ui.lblType3 << ui.lblType4 << ui.lblType5;
-//    mTypeIconList << ui.lblTypeIcon0 << ui.lblTypeIcon1 << ui.lblTypeIcon2 << ui.lblTypeIcon3 << ui.lblTypeIcon4 << ui.lblTypeIcon5;
-//
-//    mAqiList << ui.lblQuality0 << ui.lblQuality1 << ui.lblQuality2 << ui.lblQuality3 << ui.lblQuality4 << ui.lblQuality5;
-//
-//    mFxList << ui.lblFx0 << ui.lblFx1 << ui.lblFx2 << ui.lblFx3 << ui.lblFx4 << ui.lblFx5;
-//    mFlList << ui.lblFl0 << ui.lblFl1 << ui.lblFl2 << ui.lblFl3 << ui.lblFl4 << ui.lblFl5;
+    mWeekList << ui.lblWeek0 << ui.lblWeek1 << ui.lblWeek2 << ui.lblWeek3 << ui.lblWeek4 << ui.lblWeek5;
+    mDateList << ui.lblDate0 << ui.lblDate1 << ui.lblDate2 << ui.lblDate3 << ui.lblDate4 << ui.lblDate5;
+
+    mTypeList << ui.lblType0 << ui.lblType1 << ui.lblType2 << ui.lblType3 << ui.lblType4 << ui.lblType5;
+    mTypeIconList << ui.lblTypeIcon0 << ui.lblTypeIcon1 << ui.lblTypeIcon2 << ui.lblTypeIcon3 << ui.lblTypeIcon4 << ui.lblTypeIcon5;
+
+    mAqiList << ui.lblQuality0 << ui.lblQuality1 << ui.lblQuality2 << ui.lblQuality3 << ui.lblQuality4 << ui.lblQuality5;
+
+    mFxList << ui.lblFx0 << ui.lblFx1 << ui.lblFx2 << ui.lblFx3 << ui.lblFx4 << ui.lblFx5;
+    mFlList << ui.lblFl0 << ui.lblFl1 << ui.lblFl2 << ui.lblFl3 << ui.lblFl4 << ui.lblFl5;
+
+    mTypeMap.insert("暴雪", ":/res/type/BaoXue.png");
+    mTypeMap.insert("暴雨", ":/res/type/BaoYu.png");
+    mTypeMap.insert("暴雨到大暴雨", ":/res/type/BaoYuDaoDaBaoYu.png");
+    mTypeMap.insert("大暴雨", ":/res/type/DaBaoYu.png");
+    mTypeMap.insert("大暴雨到特大暴雨", ":/res/type/DaBaoYuDaoTeDaBaoYu.png");
+    mTypeMap.insert("大到暴雪", ":/res/type/DaDaoBaoXue.png");
+    mTypeMap.insert("大雪", ":/res/type/Daxue.png");
+    mTypeMap.insert("大雨", ":/res/type/DaYu.png");
+    mTypeMap.insert("冻雨", ":/res/type/DongYu.png");
+    mTypeMap.insert("多云", ":/res/type/DuoYun.png");
+    mTypeMap.insert("浮尘", ":/res/type/Fuchen.png");
+    mTypeMap.insert("雷阵雨", ":/res/type/LeizhenYu.png");
+    mTypeMap.insert("雷阵雨伴有冰雹", ":/res/type/LeizhenYuBanYouBingBao.png");
+    mTypeMap.insert("霾", ":/res/type/Mai.png");
+    mTypeMap.insert("强沙尘暴", ":/res/type/QiangshachenBao.png");
+    mTypeMap.insert("晴", ":/res/type/Qing.png");
+    mTypeMap.insert("沙尘暴", ":/res/type/shaChenBao.png");
+    mTypeMap.insert("特大暴雨", ":/res/type/TeDaBaoYu.png");
+    mTypeMap.insert("undefined", ":/res/type/undefined.png");
+    mTypeMap.insert("雾", ":/res/type/wu.png");
+    mTypeMap.insert("小到中雪", ":/res/type/XiaoDaozhongXue.png");
+    mTypeMap.insert("小到中雨", ":/res/type/xiaoDaozhongYu.png");
+    mTypeMap.insert("小雪", ":/res/type/XiaoXue.png");
+    mTypeMap.insert("小雨", ":/res/type/XiaoYu.png");
+    mTypeMap.insert("雪", ":/res/type/xue.png");
+    mTypeMap.insert("扬沙", ":/res/type/Yangsha.png");
+    mTypeMap.insert("阴", ":/res/type/Yin.png");
+    mTypeMap.insert("雨", ":/res/type/Yu.png");
+    mTypeMap.insert("雨夹雪", ":/res/type/YuJiaxue.png");
+    mTypeMap.insert("阵雪", ":/res/type/zhenxue.png");
+    mTypeMap.insert("阵雨", ":/res/type/zhenYu.png");
+    mTypeMap.insert("中到大雪", ":/res/type/zhongDaoDaXue.png");
+    mTypeMap.insert("中到大雨", ":/res/type/zhongDaoDaYu.png");
+    mTypeMap.insert("中雪", " :/res/type/zhongXue.png");
+    mTypeMap.insert("中雨", ":/res/type/ZhongYu.png");
 
     mNetAccessManager = new QNetworkAccessManager(this);
 
@@ -170,4 +206,68 @@ void WeatherTray::updateUI()
 {
     ui.lblDate->setText(QDateTime::fromString(mToday.date,"yyyyMMdd").toString("yyyy/MM/dd") + " " + mDay[1].week);
     ui.lblCity->setText(mToday.city);
+
+    ui.lblTypeIcon->setPixmap(mTypeMap[mToday.type]);
+    ui.lblTemp->setText(QString::number(mToday.wendu) + "°");
+    ui.lblType->setText(mToday.type);
+    ui.lblLowHigh->setText(QString::number(mToday.low) + "°~" + QString::number(mToday.high) + "°");
+
+    ui.lblGanMao->setText("感冒指数：" + mToday.ganmao);
+
+    ui.lblWindFx->setText(mToday.fx);
+    ui.lblWindFl->setText(mToday.fl);
+
+    ui.lblPM25->setText(QString::number(mToday.pm25));
+
+    ui.lblShiDu->setText(mToday.shidu);
+    ui.lblQuality->setText(mToday.quality);
+
+
+    for (int i = 0; i < 6; i++)
+    {
+        mWeekList[i]->setText("周" + mDay[i].week.right(1));
+        ui.lblWeek0->setText("昨天");
+        ui.lblWeek1->setText("今天");
+        ui.lblWeek2->setText("明天");
+
+        QStringList ymdList = mDay[i].date.split("-");
+        mDateList[i]->setText(ymdList[1] + "/" + ymdList[2]);
+
+        mTypeList[i]->setText(mDay[i].type);
+        mTypeIconList[i]->setPixmap(mTypeMap[mDay[i].type]);
+
+        if (mDay[i].aqi > 0 && mDay[i].aqi <= 50)
+        {
+            mAqiList[i]->setText("优");
+            mAqiList[i]->setStyleSheet("background-color: rgb(121, 184, 0);padding:8px;");
+        }
+        else if (mDay[i].aqi > 50 && mDay[i].aqi <= 100)
+        {
+            mAqiList[i]->setText("良");
+            mAqiList[i]->setStyleSheet("background-color: rgb(255, 187, 23);padding:8px;");
+        }
+        else if (mDay[i].aqi >100 && mDay[i].aqi <= 150)
+        {
+            mAqiList[i]->setText("轻度");
+            mAqiList[i]->setStyleSheet("background-color: rgb(255, 87, 97);padding:8px;");
+        }
+        else if (mDay[i].aqi >150 && mDay[i].aqi <= 200)
+        {
+            mAqiList[i]->setText("中度");
+            mAqiList[i]->setStyleSheet("background-color: rgb(235, 17, 27);padding:8px;");
+        }
+        else if (mDay[i].aqi > 200&& mDay[i].aqi <= 250)
+        {
+            mAqiList[i]->setText("重度");
+            mAqiList[i]->setStyleSheet("background-color: rgb(170, 0, 0);padding:8px;");
+        }
+        else
+        {
+            mAqiList[i]->setText("严重");
+            mAqiList[i]->setStyleSheet("background-color: rgb(110, 0, 0);padding:8px;");
+        }
+
+        mFxList[i]->setText(mDay[i].fx);
+        mFlList[i]->setText(mDay[i].fl);
+    }
 }

@@ -131,7 +131,7 @@ border-radius: 15px</string>
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/aqi.png</pixmap>
+              <pixmap resource="Resource.qrc">:/res/aqi.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -216,7 +216,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/pm25.png</pixmap>
+              <pixmap resource="Resource.qrc">:/res/pm25.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -289,7 +289,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/humidity.png</pixmap>
+              <pixmap resource="Resource.qrc">:/res/humidity.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -362,7 +362,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
               <string/>
              </property>
              <property name="pixmap">
-              <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/wind.png</pixmap>
+              <pixmap resource="Resource.qrc">:/res/wind.png</pixmap>
              </property>
              <property name="scaledContents">
               <bool>true</bool>
@@ -420,9 +420,9 @@ font: 10pt &quot;微软雅黑&quot;;</string>
      <property name="geometry">
       <rect>
        <x>379</x>
-       <y>30</y>
-       <width>401</width>
-       <height>411</height>
+       <y>20</y>
+       <width>421</width>
+       <height>431</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -646,7 +646,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/DuoYun.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/DuoYun.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -675,7 +675,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/Qing.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/Qing.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -692,7 +692,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/DuoYun.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/DuoYun.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -737,7 +737,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/BaoYu.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/BaoYu.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -782,7 +782,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/XiaoYu.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/XiaoYu.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -813,7 +813,7 @@ border-bottom-right-radius: 0px;</string>
             <string/>
            </property>
            <property name="pixmap">
-            <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/ZhongYu.png</pixmap>
+            <pixmap resource="Resource.qrc">:/res/type/ZhongYu.png</pixmap>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -1185,7 +1185,7 @@ color: rgb(240, 240, 240);</string>
       <rect>
        <x>20</x>
        <y>49</y>
-       <width>361</width>
+       <width>381</width>
        <height>131</height>
       </rect>
      </property>
@@ -1211,7 +1211,7 @@ color: rgb(240, 240, 240);</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">:/res/type/DuoYun.png</pixmap>
+         <pixmap resource="Resource.qrc">:/res/type/DuoYun.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -1388,7 +1388,7 @@ font: 12pt &quot;微软雅黑&quot;;</string>
        <x>20</x>
        <y>-10</y>
        <width>741</width>
-       <height>71</height>
+       <height>61</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1432,7 +1432,7 @@ padding: 3px 5px</string>
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="C:/Users/zmh55/Downloads/12-完成界面布局/main.qrc">
+         <iconset resource="Resource.qrc">
           <normaloff>:/res/search.png</normaloff>:/res/search.png</iconset>
         </property>
        </widget>

@@ -1,5 +1,9 @@
 #pragma once
 
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
+
 #include <QtWidgets/QMainWindow>
 #include <QContextMenuEvent>
 #include <QNetworkAccessManager>
@@ -53,6 +57,8 @@ private:
 
     QList<QLabel*> mFxList;          //风向
     QList<QLabel*> mFlList;          //风力
+
+    QMap<QString, QString> mTypeMap;
 protected:
     void contextMenuEvent(QContextMenuEvent* event);
 

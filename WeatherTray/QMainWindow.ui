@@ -420,7 +420,7 @@ font: 10pt &quot;微软雅黑&quot;;</string>
      <property name="geometry">
       <rect>
        <x>379</x>
-       <y>20</y>
+       <y>30</y>
        <width>421</width>
        <height>431</height>
       </rect>
@@ -428,6 +428,15 @@ font: 10pt &quot;微软雅黑&quot;;</string>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QWidget" name="widget_5" native="true">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
 	background-color: rgba(0, 200, 200, 200);
@@ -435,6 +444,15 @@ font: 10pt &quot;微软雅黑&quot;;</string>
 }</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
+         <property name="leftMargin">
+          <number>11</number>
+         </property>
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <property name="horizontalSpacing">
           <number>6</number>
          </property>
@@ -628,10 +646,10 @@ color: rgb(240, 240, 240);</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
          <property name="topMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <property name="bottomMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <property name="verticalSpacing">
           <number>0</number>
@@ -844,7 +862,7 @@ border-top-right-radius: 0px;</string>
           <number>5</number>
          </property>
          <property name="bottomMargin">
-          <number>5</number>
+          <number>0</number>
          </property>
          <item>
           <widget class="QLabel" name="lblQuality0">
@@ -971,7 +989,7 @@ border-bottom-right-radius: 0px;</string>
            <property name="minimumSize">
             <size>
              <width>0</width>
-             <height>80</height>
+             <height>70</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -998,6 +1016,15 @@ border-top-right-radius: 0px;</string>
       <item>
        <widget class="QWidget" name="widget_8" native="true">
         <layout class="QGridLayout" name="gridLayout_4">
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>11</number>
+         </property>
+         <property name="bottomMargin">
+          <number>11</number>
+         </property>
          <property name="verticalSpacing">
           <number>0</number>
          </property>
@@ -1270,11 +1297,17 @@ background-color: rgba(0, 255, 255, 0);</string>
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
             <property name="topMargin">
              <number>0</number>
             </property>
+            <property name="rightMargin">
+             <number>20</number>
+            </property>
             <property name="bottomMargin">
-             <number>40</number>
+             <number>10</number>
             </property>
             <item>
              <widget class="QLabel" name="lblCity">
@@ -1388,7 +1421,7 @@ font: 12pt &quot;微软雅黑&quot;;</string>
        <x>20</x>
        <y>-10</y>
        <width>741</width>
-       <height>61</height>
+       <height>71</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1416,7 +1449,7 @@ border-radius: 10px;
 padding: 3px 5px</string>
         </property>
         <property name="text">
-         <string>输入搜索城市</string>
+         <string/>
         </property>
         <property name="placeholderText">
          <string>城市</string>

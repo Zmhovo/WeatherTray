@@ -9,6 +9,10 @@ WeatherTray::WeatherTray(QWidget* parent)
     setWindowFlag(Qt::FramelessWindowHint);          //ÉèÖÃ´°¿ÚÎÞ±ß¿ò
     setFixedSize(width(), height());
 
+
+    ui.leCity->setPlaceholderText("ÇëÊäÈëÐèÒªËÑË÷µÄ³ÇÊÐ");
+    ui.leCity->setFocusPolicy(Qt::ClickFocus);
+
     mExitMenu = new QMenu(this);
     mExitAct = new QAction();
 
@@ -72,9 +76,13 @@ WeatherTray::WeatherTray(QWidget* parent)
     mNetAccessManager = new QNetworkAccessManager(this);
 
     connect(mNetAccessManager, &QNetworkAccessManager::finished, this, &WeatherTray::onReplied);
-
+    
     //getWeatherInfo("101010100");
+    
     getWeatherInfo("¶«Ý¸");
+
+    ui.lblHighCurve->installEventFilter(this);
+    ui.lblLowCurve->installEventFilter(this);
 }
 
 WeatherTray::~WeatherTray()
@@ -98,6 +106,7 @@ void WeatherTray::onReplied(QNetworkReply* reply)
     reply->deleteLater();
 }
 
+
 void WeatherTray::contextMenuEvent(QContextMenuEvent* event)          //µ¯³öÓÒ¼ü²Ëµ¥
 {
     mExitMenu->exec(QCursor::pos());
@@ -114,6 +123,7 @@ void WeatherTray::mouseMoveEvent(QMouseEvent* event)
 {
     this->move(event->globalPos() - mOffset);
 }
+
 
 //void WeatherTray::getWeatherInfo(QString cityCode)
 void WeatherTray::getWeatherInfo(QString cityName)
@@ -212,6 +222,9 @@ void WeatherTray::parseJson(QByteArray& byteArray)
     mToday.low = mDay[1].low;
 
     updateUI();
+
+    ui.lblHighCurve->update();
+    ui.lblLowCurve->update();
 }
 
 void WeatherTray::updateUI()
@@ -281,6 +294,133 @@ void WeatherTray::updateUI()
 
         mFxList[i]->setText(mDay[i].fx);
         mFlList[i]->setText(mDay[i].fl);
+    }
+}
+
+bool WeatherTray::eventFilter(QObject* watched, QEvent* event)
+{
+    if (watched == ui.lblHighCurve && event->type() == QEvent::Paint)
+    {
+        paintHighCurve();
+    }
+    if (watched == ui.lblLowCurve && event->type() == QEvent::Paint)
+    {
+        paintLowCurve();
+    }
+    return QWidget::eventFilter(watched, event);
+}
+
+void WeatherTray::paintHighCurve()
+{
+    QPainter painter(ui.lblHighCurve);
+
+    painter.setRenderHint(QPainter::Antialiasing, true);          //¿¹¾â³Ý
+
+    int pointX[6] = { 0 };
+    for (int i = 0; i < 6; i++)
+    {
+        pointX[i] = mWeekList[i]->pos().x() + mWeekList[i]->width() / 2;
+    }
+
+    int tempSum = 0;
+    int tempAverage = 0;
+
+    for (int i = 0; i < 6; i++)
+    {
+        tempSum += mDay[i].high;
+    }
+    tempAverage = tempSum / 6;
+
+    int pointY[6] = { 0 };
+    int yCenter = ui.lblHighCurve->height() / 2;
+
+    for (int i = 0; i < 6; i++)
+    {
+        pointY[i] = yCenter - ((mDay[i].high - tempAverage) * INCREMENT);
+    }
+    QPen pen = painter.pen();
+    pen.setWidth(1);
+    pen.setColor(QColor(255, 170, 0));
+
+    painter.setPen(pen);
+    painter.setBrush(QColor(255, 170, 0));
+    for (int i = 0; i < 6; i++)
+    {
+        painter.drawEllipse(QPoint(pointX[i], pointY[i]), POINT_RADIUS, POINT_RADIUS);
+
+        painter.drawText(pointX[i] - TEXT_OFFSET_X, pointY[i] - TEXT_OFFSET_Y, QString::number(mDay[i].high) + "¡ã");
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (i == 0)
+        {
+            pen.setStyle(Qt::DotLine);
+            painter.setPen(pen);
+        }
+        else
+        {
+            pen.setStyle(Qt::SolidLine);
+            painter.setPen(pen);
+        }
+        painter.drawLine(pointX[i], pointY[i], pointX[i + 1], pointY[i + 1]);
+    }
+}
+
+void WeatherTray::paintLowCurve()
+{
+    QPainter painter(ui.lblLowCurve);
+
+    painter.setRenderHint(QPainter::Antialiasing, true);          //¿¹¾â³Ý
+
+    int pointX[6] = { 0 };
+    for (int i = 0; i < 6; i++)
+    {
+        pointX[i] = mWeekList[i]->pos().x() + mWeekList[i]->width() / 2;
+    }
+
+    int tempSum = 0;
+    int tempAverage = 0;
+
+    for (int i = 0; i < 6; i++)
+    {
+        tempSum += mDay[i].low;
+    }
+    tempAverage = tempSum / 6;
+
+    int pointY[6] = { 0 };
+    int yCenter = ui.lblLowCurve->height() / 2;
+
+    for (int i = 0; i < 6; i++)
+    {
+        pointY[i] = yCenter - ((mDay[i].low - tempAverage) * INCREMENT);
+    }
+    QPen pen = painter.pen();
+    pen.setWidth(1);
+    pen.setColor(QColor(0, 255, 255));
+
+    painter.setPen(pen);
+    painter.setBrush(QColor(0, 255, 255));
+    for (int i = 0; i < 6; i++)
+    {
+        painter.drawEllipse(QPoint(pointX[i], pointY[i]), POINT_RADIUS, POINT_RADIUS);
+
+        painter.drawText(pointX[i] - TEXT_OFFSET_X, pointY[i] - TEXT_OFFSET_Y, QString::number(mDay[i].low) + "¡ã");
+    }
+
+    for (int i = 0; i < 5; i++)
+    {
+        if (i == 0)
+        {
+            pen.setStyle(Qt::DotLine);
+            painter.setPen(pen);
+        }
+        else
+        {
+            pen.setStyle(Qt::SolidLine);
+            painter.setPen(pen);
+        }
+        painter.drawLine(pointX[i], pointY[i], pointX[i + 1], pointY[i + 1]);
     }
 }
 
